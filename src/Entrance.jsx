@@ -1,7 +1,17 @@
 /** Users can enter their name to receive a token from the API. */
+import { useAuth } from "./AuthContext";
+import { useState } from "react";
 export default function Entrance() {
   // TODO: call signup when form is submitted
+  const { signup } = useAuth();
+  const [username, setUsername] = useState("");
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (username.trim()) {
+      await signup(username);
+    }
+  };
   return (
     <>
       <h1>Cave Entrance</h1>
